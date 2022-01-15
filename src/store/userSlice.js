@@ -4,7 +4,7 @@ import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";
 
 export const Getusers = createAsyncThunk(
     "users/Getusers",
-    async (dispatch, getState)=>{
+    async (dispatch, getState) =>{
         return await fetch('https://jsonplaceholder.typicode.com/users').then(
             res=>res.json()
         )
@@ -35,5 +35,5 @@ export const userSlice = createSlice({
 })
 
 
-export const usersselected = state => state.users;
+export const usersSelected = (state) => state.users;
 export default  userSlice.reducer;
