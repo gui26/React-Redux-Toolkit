@@ -21,7 +21,7 @@ export const Home = () =>{
 
 
 const RenderPosts= (props:any)=>{
-   const Lista = props.posts.map( (post:any) =>
+   const ListPost = props.posts.map( (post:any) =>
      <div key={post.id} className="Posts">
        <h3>{post.title}</h3>
        <p>{post.body}</p>
@@ -29,7 +29,7 @@ const RenderPosts= (props:any)=>{
    )
    return (
      <div>
-       {Lista}
+       {ListPost}
      </div>
    )
 };
