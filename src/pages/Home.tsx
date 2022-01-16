@@ -1,24 +1,42 @@
-import React, { useEffect } from "react";
-import{ useDispatch, useSelector} from 'react-redux';
-import { Getusers, usersSelected } from "../store/userSlice";
+import React, { useEffect} from "react";
+import '../styles/posts.scss';
 
+import { useDispatch, useSelector} from 'react-redux';
+import { GetPost, PostsSelected} from '../store/postSlice'
 export const Home = () =>{
 
+  const dispatch = useDispatch();
+  const { posts } = useSelector(PostsSelected);
 
-const { users } = useSelector(usersSelected)
-const dispatch = useDispatch();
+  useEffect( ()=>{
+    dispatch(GetPost())
+  },[dispatch]);
+
+  
 
 
-useEffect( ()=>{
-    dispatch(Getusers());
+const RenderItems = (props:any)=>{
+   const Lista = props.posts.map( (post:any) =>
+     <div key={post.id} className="Posts">
+       <h3>{post.title}</h3>
+       <p>{post.body}</p>
+     </div>
+   )
+   return (
+     <div>
+       {Lista}
+     </div>
+   )
+};
 
-},[dispatch])
+
+
+
 
     return(
-        <div>
-
-{ users && users.map( (user:any, i:number) =><h1 key={i}>{user.name}</h1>)}
-                <h1>React Redux Toolkit</h1>            
+        <div className="container-home" >
+               
+                <RenderItems posts={posts} />
         </div>
     )
 }
